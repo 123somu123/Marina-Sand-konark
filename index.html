@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marina Bay Sands – Konark | Luxury Hotel</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional inline styles if needed */
+    .food-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .food-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    .category-tab-btn {
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 1rem;
+      max-width: 400px;
+      width: 90%;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+    .modal h2 {
+      color: #78350f;
+      margin-bottom: 1.5rem;
+    }
+    .login-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .login-options button {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .login-options button:hover {
+      transform: translateY(-2px);
+    }
+    .user-login-btn {
+      background: #2563eb;
+      color: white;
+    }
+    .admin-login-btn {
+      background: #dc2626;
+      color: white;
+    }
+    .room-booking-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .room-booking-item button {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sticky Header -->
+<header class="sticky-header">
+  <div class="container header-container">
+    <div class="logo">
+      <i class="fas fa-umbrella-beach"></i>
+      <span>Marina Bay Sands <span>– Konark</span></span>
+    </div>
+    
+    <nav class="nav-menu">
+      <a href="#home">Home</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#food">Food</a>
+      <a href="#billing">Billing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    
+    <div class="header-actions">
+      <a href="tel:+916371337901" class="phone-link"><i class="fas fa-phone-alt"></i> +91 6371337901</a>
+      <a href="#booking" class="btn-book"><i class="fas fa-calendar-check"></i> Book Now</a>
+      <!-- Single Login Button -->
+      <button id="loginBtn" style="background: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; margin-left: 0.5rem; cursor: pointer;">
+        <i class="fas fa-user"></i> Login
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Welcome Banner (hidden by default) -->
+<div id="welcomeBanner" style="display: none; background: #16a34a; color: white; text-align: center; padding: 0.75rem; font-weight: 500;">
+  <span id="welcomeMessage"></span>
+  <button id="logoutBtn" style="margin-left: 1rem; background: white; color: #16a34a; border: none; padding: 0.25rem 1rem; border-radius: 20px; cursor: pointer; font-weight: 600;">Logout</button>
+</div>
+
+<!-- Login Selection Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+    <h2>Select Login Type</h2>
+    <div class="login-options">
+      <button class="user-login-btn" onclick="redirectToUserLogin()">
+        <i class="fas fa-user"></i> User Login / Register
+      </button>
+      <button class="admin-login-btn" onclick="redirectToAdminLogin()">
+        <i class="fas fa-user-shield"></i> Admin Login
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section id="home" class="hero-section">
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" alt="Luxury pool">
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="hero-content">
+    <span class="hero-subtitle">WELCOME TO PARADISE</span>
+    <h1 class="hero-title">Where heritage meets modern luxury</h1>
+    <p class="hero-description">In the shadow of the Sun Temple — Konark's finest address</p>
+    
+    <div class="hero-buttons">
+      <a href="#" id="reserveRoomBtn" class="btn-primary"><i class="fas fa-bed"></i> Reserve a room</a>
+      <a href="#food" class="btn-secondary"><i class="fas fa-utensils"></i> Order food</a>
+    </div>
+    
+    <!-- Quick Availability Checker -->
+    <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); padding: 1rem; border-radius: 1rem; margin-top: 3rem; max-width: 48rem;">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; @media (min-width:768px){grid-template-columns:repeat(4,1fr);}">
+        <input type="date" id="quickCheckIn" style="padding: 0.75rem; border-radius: 0.5rem; border: none;" value="2025-05-01">
+        <input type="date" id="quickCheckOut" style="padding: 0.75rem; border-radius: 0.5rem; border: none;" value="2025-05-05">
+        <select id="quickRoomType" style="padding: 0.75rem; border-radius: 0.5rem; border: none;">
+          <option value="deluxe">Sun Temple Deluxe (₹8,500/night)</option>
+          <option value="executive">Konark Executive Suite (₹14,200/night)</option>
+          <option value="presidential">Presidential Villa (₹32,000/night)</option>
+        </select>
+        <button id="quickCheckBtn" style="background: #92400e; color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; font-weight: 600;">Check</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Special Offers -->
+<section style="background: #fffbeb; padding: 2rem 0;">
+  <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <span><i class="fas fa-tag" style="color: #b45309;"></i> Early bird 20% off</span>
+      <span><i class="fas fa-clock" style="color: #b45309;"></i> Last minute · 2 nights free</span>
+      <span><i class="fas fa-wifi" style="color: #b45309;"></i> Free premium Wi-Fi</span>
+    </div>
+    <div style="color: #92400e;">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.8 · 1200+ reviews
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS SECTION -->
+<section id="rooms" style="padding: 4rem 0; background: white;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 style="font-size: 2.5rem; font-family: 'Playfair Display', serif; color: #78350f;">Rooms & Royal Suites</h2>
+      <p style="color: #4b5563;"></p>
+    </div>
+    
+    <!-- Virtual Tour Placeholder -->
+    <div style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80') center/cover; height: 20rem; border-radius: 1.5rem; margin-bottom: 3rem; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+      <div>
+        <i class="fas fa-vr-cardboard" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+        <h3 style="font-size: 1.5rem; font-weight: 600;"></h3>
+      </div>
+    </div>
+    
+    <!-- Room Grid -->
+    <div class="room-grid">
+      <!-- Deluxe Room -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="room-image">
+        <div class="room-content">
+          <h3 class="room-title">Sun Temple Deluxe</h3>
+          <p class="room-price">₹8,500 <span>/night</span></p>
+          <ul class="room-amenities">
+            <li><i class="fas fa-check"></i> Sea view balcony</li>
+            <li><i class="fas fa-check"></i> King bed + spa bath</li>
+            <li><i class="fas fa-wifi"></i> High-speed WiFi</li>
+          </ul>
+          <button class="btn-book-room" data-room="deluxe" data-name="Sun Temple Deluxe" data-price="8500">Book this room</button>
+        </div>
+      </div>
+      
+      <!-- Executive Suite (Popular) -->
+      <div class="room-card popular" style="position: relative;">
+        <span class="popular-badge">MOST POPULAR</span>
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="room-image">
+        <div class="room-content">
+          <h3 class="room-title">Konark Executive Suite</h3>
+          <p class="room-price">₹14,200 <span>/night</span></p>
+          <ul class="room-amenities">
+            <li><i class="fas fa-check"></i> Private terrace & jacuzzi</li>
+            <li><i class="fas fa-check"></i> Separate living + butler</li>
+            <li><i class="fas fa-glass-cheers"></i> Welcome champagne</li>
+          </ul>
+          <button class="btn-book-room" data-room="executive" data-name="Konark Executive Suite" data-price="14200">Book this room</button>
+        </div>
+      </div>
+      
+      <!-- Presidential Villa -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="room-image">
+        <div class="room-content">
+          <h3 class="room-title">Presidential Villa</h3>
+          <p class="room-price">₹32,000 <span>/night</span></p>
+          <ul class="room-amenities">
+            <li><i class="fas fa-check"></i> 2 bedrooms + private pool</li>
+            <li><i class="fas fa-check"></i> 24h personal chef</li>
+            <li><i class="fas fa-car"></i> Airport transfer included</li>
+          </ul>
+          <button class="btn-book-room" data-room="presidential" data-name="Presidential Villa" data-price="32000">Book this room</button>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 2.5rem;">
+      <a href="#" style="color: #92400e;">Compare all rooms <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD ORDERING SECTION - FULL GRID WITH ALL ITEMS -->
+<section id="food" style="padding: 4rem 0; background: #f9fafb;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 style="font-size: 2.5rem; font-family: 'Playfair Display', serif; color: #78350f;">Order Food & Beverages</h2>
+      <p style="color: #4b5563;">From authentic Indian cuisine to refreshing beverages — delivered to your room</p>
+    </div>
+    
+    <!-- Category Tabs -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 2.5rem;">
+      <button onclick="filterHomeCategory('all')" id="home-tab-all" class="category-tab-btn" style="background: #92400e; color: white; padding: 0.5rem 1.5rem; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer;">All</button>
+      <button onclick="filterHomeCategory('main-course')" id="home-tab-main" class="category-tab-btn" style="background: #e5e7eb; color: #1f2937; padding: 0.5rem 1.5rem; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer;">Main Course</button>
+      <button onclick="filterHomeCategory('cold-drinks')" id="home-tab-cold" class="category-tab-btn" style="background: #e5e7eb; color: #1f2937; padding: 0.5rem 1.5rem; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer;">Cold Drinks</button>
+      <button onclick="filterHomeCategory('snacks')" id="home-tab-snacks" class="category-tab-btn" style="background: #e5e7eb; color: #1f2937; padding: 0.5rem 1.5rem; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer;">Snacks</button>
+      <button onclick="filterHomeCategory('desserts')" id="home-tab-desserts" class="category-tab-btn" style="background: #e5e7eb; color: #1f2937; padding: 0.5rem 1.5rem; border-radius: 9999px; border: none; font-weight: 600; cursor: pointer;">Desserts</button>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+      <!-- FOOD GRID -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        
+        <!-- ===== MAIN COURSE ITEMS ===== -->
+        <div class="food-card" data-category="main-course">
+          <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Chicken Biryani">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Chicken Biryani</h4>
+                <p class="food-desc">Aromatic rice with spiced chicken</p>
+              </div>
+              <span class="food-price">₹350</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Chicken Biryani',350)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="main-course">
+          <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Butter Paneer">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Butter Paneer</h4>
+                <p class="food-desc">Cottage cheese in creamy tomato gravy</p>
+              </div>
+              <span class="food-price">₹280</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Butter Paneer',280)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="main-course">
+          <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1017&q=80" class="food-image" alt="Maharaja Thali">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Maharaja Thali</h4>
+                <p class="food-desc">Royal feast with assorted dishes</p>
+              </div>
+              <span class="food-price">₹850</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Maharaja Thali',850)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="main-course">
+          <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Konark Seafood Thali">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Konark Seafood Thali</h4>
+                <p class="food-desc">Fresh crab, prawn, local fish</p>
+              </div>
+              <span class="food-price">₹1250</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Konark Seafood Thali',1250)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <!-- ===== SNACKS ITEMS ===== -->
+        <div class="food-card" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Chicken Stick">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Chicken Stick (2 pcs)</h4>
+                <p class="food-desc">Crispy chicken strips with dip</p>
+              </div>
+              <span class="food-price">₹180</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Chicken Stick',180)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Samosa">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Samosa (2 pcs)</h4>
+                <p class="food-desc">Stuffed with spiced potatoes & peas</p>
+              </div>
+              <span class="food-price">₹220</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Samosa',220)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1639024471283-03518883512d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Onion Rings">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Onion Rings</h4>
+                <p class="food-desc">Crispy beer-battered onion rings</p>
+              </div>
+              <span class="food-price">₹190</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Onion Rings',190)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1608039829572-78524f79c4c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Chicken Wings">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Chicken Wings (6 pcs)</h4>
+                <p class="food-desc">Spicy tangy sauce</p>
+              </div>
+              <span class="food-price">₹350</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Chicken Wings',350)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Pizza">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Margherita Pizza</h4>
+                <p class="food-desc">Classic cheese pizza with tomato sauce</p>
+              </div>
+              <span class="food-price">₹320</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Margherita Pizza',320)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="snacks">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Burger">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Classic Burger</h4>
+                <p class="food-desc">Grilled chicken patty with lettuce & cheese</p>
+              </div>
+              <span class="food-price">₹320</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Classic Burger',320)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <!-- ===== COLD DRINKS ITEMS ===== -->
+        <div class="food-card" data-category="cold-drinks">
+          <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Pepsi">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Pepsi</h4>
+                <p class="food-desc">Refreshing cola drink (500ml)</p>
+              </div>
+              <span class="food-price">₹85</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Pepsi',85)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="cold-drinks">
+          <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Coca Cola">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Coca Cola</h4>
+                <p class="food-desc">Classic chilled cola (330ml)</p>
+              </div>
+              <span class="food-price">₹80</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Coca Cola',80)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="cold-drinks">
+          <img src="https://images.unsplash.com/photo-1613478225719-02e2f8dfd5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Orange Juice">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Orange Juice</h4>
+                <p class="food-desc">Fresh squeezed orange juice</p>
+              </div>
+              <span class="food-price">₹120</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Orange Juice',120)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <div class="food-card" data-category="cold-drinks">
+          <img src="https://images.unsplash.com/photo-1546173159-315724a31696?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Mango Juice">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Mango Juice</h4>
+                <p class="food-desc">Sweet mango pulp juice</p>
+              </div>
+              <span class="food-price">₹130</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Mango Juice',130)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+        <!-- ===== DESSERTS ITEMS ===== -->
+        <div class="food-card" data-category="desserts">
+          <img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" class="food-image" alt="Macarons">
+          <div class="food-content">
+            <div class="food-header">
+              <div>
+                <h4 class="food-title">Macarons (4 pcs)</h4>
+                <p class="food-desc">French almond meringue cookies</p>
+              </div>
+              <span class="food-price">₹320</span>
+            </div>
+            <button class="btn-add-food" onclick="addToCart('Macarons',320)"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+        
+      </div> <!-- End food grid -->
+      
+      <!-- View Full Menu Button -->
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="beverages.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #92400e; color: white; padding: 0.75rem 2rem; border-radius: 9999px; text-decoration: none; font-weight: 600; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+          <i class="fas fa-glass-cheers"></i> View Full Drinks & Snacks Menu
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <!-- Billing Section - Updated with Room Charges -->
+      <div id="billing" style="background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); position: sticky; top: 6rem;">
+        <h3 style="font-size: 1.5rem; font-weight: bold; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.75rem;">
+          <i class="fas fa-credit-card" style="margin-right: 0.5rem;"></i>Your Bill (₹)
+        </h3>
+        
+        <!-- Room Charges Section -->
+        <div id="room-bill-section" style="margin-top: 1rem;">
+          <h4 style="font-weight: 600; color: #78350f;">Room Charges</h4>
+          <div id="room-items" style="margin-top: 0.5rem; max-height: 10rem; overflow-y: auto;">
+            <p style="color: #9ca3af; text-align: center; padding: 0.5rem;">No room booked yet.</p>
+          </div>
+        </div>
+        
+        <!-- Food Items Section -->
+        <div style="margin-top: 1rem;">
+          <h4 style="font-weight: 600; color: #78350f;">Food Items</h4>
+          <div id="cart-items" style="margin-top: 0.5rem; max-height: 12rem; overflow-y: auto;">
+            <p style="color: #9ca3af; text-align: center; padding: 0.5rem;">No items yet. Add food or extras.</p>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <input type="text" id="promoCode" placeholder="Promo code" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.5rem; width: 100%;">
+          <button onclick="applyPromo()" style="background: #e5e7eb; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; font-weight: 600; cursor: pointer;">Apply</button>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.125rem; margin-top: 1rem;">
+          <span>Total (INR):</span>
+          <span id="totalAmount">₹0</span>
+        </div>
+        
+        <button id="proceedPaymentBtn" style="width: 100%; background: #16a34a; color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; font-weight: 600; margin-top: 1.5rem; cursor: pointer;">
+          <i class="fas fa-lock"></i> Proceed to secure payment
+        </button>
+        
+        <!-- Special Combo Offer -->
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+          <p style="font-weight: 600; color: #92400e;"><i class="fas fa-fire"></i> Today's Combo</p>
+          <div style="background: #fef3c7; padding: 0.75rem; border-radius: 0.5rem; margin-top: 0.5rem;">
+            <p style="font-weight: 500;">Chicken Biryani + Macarons</p>
+            <p style="font-size: 0.875rem; color: #4b5563;">Save ₹100</p>
+            <button onclick="addToCart('Combo: Chicken Biryani + Macarons', 670)" style="width: 100%; background: #92400e; color: white; border: none; padding: 0.25rem; border-radius: 0.25rem; margin-top: 0.5rem; cursor: pointer;">Add Combo @ ₹670</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Testimonials -->
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 3rem; color: #4b5563; font-size: 0.875rem;">
+      <span><i class="fab fa-tripadvisor" style="color: #00af87;"></i> 5/5 · 820 reviews</span>
+      <span><i class="fab fa-google" style="color: #4285f4;"></i> 4.8 · "Best hotel in Konark"</span>
+      <span><i class="fas fa-award" style="color: #b45309;"></i> Odisha Tourism Award 2024</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT & CONTACT SECTION -->
+<section id="contact" style="padding: 4rem 0; background: white;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; @media (min-width:768px){grid-template-columns:repeat(2,1fr);}">
+      <!-- About -->
+      <div>
+        <h2 style="font-size: 2.5rem; font-family: 'Playfair Display', serif; color: #78350f;">Marina Bay Sands – Konark</h2>
+        <p style="color: #4b5563; margin-top: 1rem;">Inspired by the legacy of the Sun Temple, we blend Odisha's heritage with contemporary luxury. Our hotel features 120 rooms, a spa, Olympic-size pool, and three signature restaurants. Just 10 minutes from Konark Sun Temple and private beach access.</p>
+        
+        <!-- Contact Info -->
+        <div style="background: #fffbeb; padding: 1.25rem; border-radius: 0.75rem; margin-top: 1.5rem;">
+          <h3 style="font-size: 1.25rem; font-weight: bold; color: #78350f;">📞 Reach us directly</h3>
+          <div style="margin-top: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="background: #fde68a; width: 2.5rem; height: 2.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: #92400e;">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <p style="font-size: 0.875rem; color: #6b7280;">Call or WhatsApp</p>
+                <a href="tel:+916371337901" style="font-size: 1.125rem; font-weight: bold; color: #92400e; text-decoration: none;">+91 6371337901</a>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="background: #fde68a; width: 2.5rem; height: 2.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: #92400e;">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <p style="font-size: 0.875rem; color: #6b7280;">Email us</p>
+                <a href="mailto:soumyaranjanparamanik8@gmail.com" style="font-size: 1.125rem; font-weight: bold; color: #92400e; text-decoration: none;">soumyaranjanparamanik8@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+            <a href="tel:+916371337901" style="flex: 1; background: #16a34a; color: white; text-align: center; padding: 0.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.875rem; font-weight: 600;"><i class="fas fa-phone"></i> Call now</a>
+            <a href="mailto:soumyaranjanparamanik8@gmail.com" style="flex: 1; background: #2563eb; color: white; text-align: center; padding: 0.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 0.875rem; font-weight: 600;"><i class="fas fa-envelope"></i> Email</a>
+          </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem;">
+          <div><i class="fas fa-swimmer" style="color: #b45309;"></i><span style="margin-left: 0.5rem;">Infinity pool</span></div>
+          <div><i class="fas fa-dumbbell" style="color: #b45309;"></i><span style="margin-left: 0.5rem;">24/7 gym</span></div>
+          <div><i class="fas fa-spa" style="color: #b45309;"></i><span style="margin-left: 0.5rem;">Ayurveda spa</span></div>
+          <div><i class="fas fa-shuttle-van" style="color: #b45309;"></i><span style="margin-left: 0.5rem;">Airport transfer</span></div>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <a href="#" style="color: #25d366; font-size: 2rem;"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" style="color: #e4405f; font-size: 2rem;"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="color: #1877f2; font-size: 2rem;"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      
+      <!-- Map -->
+      <div>
+        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Find us</h3>
+        <div style="background: #e5e7eb; height: 16rem; border-radius: 1rem; overflow: hidden;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.127705878151!2d86.094521!3d19.8876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19f8e1b3b1b1b1%3A0x123456789abcdef!2sKonark%20Sun%20Temple!5e0!3m2!1sen!2sin!4v1611111111111" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <p style="margin-top: 1rem;"><i class="fas fa-map-pin" style="color: #b45309;"></i> Chakratirtha Road, Konark, Odisha 752111</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+          <span><i class="fas fa-phone" style="color: #b45309;"></i> <a href="tel:+916371337901" style="color: #4b5563;">+91 6371337901</a></span>
+          <span><i class="fas fa-envelope" style="color: #b45309;"></i> <a href="mailto:soumyaranjanparamanik8@gmail.com" style="color: #4b5563;">soumyaranjanparamanik8@gmail.com</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEVERAGES SHOWCASE -->
+<section style="padding: 3rem 0; background: #fffbeb;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-size: 2rem; font-family: 'Playfair Display', serif; color: #78350f;">Chilled Beverages & Snacks</h2>
+      <p style="color: #4b5563;">Perfect companions for your Konark evenings</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; @media (min-width:768px){grid-template-columns:repeat(4, 1fr);}">
+      <div>
+        <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" style="width: 8rem; height: 8rem; object-fit: cover; border-radius: 9999px; margin: 0 auto; border: 4px solid #fde68a;" alt="Pepsi">
+        <p style="font-weight: 600; margin-top: 0.5rem;">Pepsi</p>
+        <p style="color: #b45309;">₹85</p>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" style="width: 8rem; height: 8rem; object-fit: cover; border-radius: 9999px; margin: 0 auto; border: 4px solid #fde68a;" alt="Coca Cola">
+        <p style="font-weight: 600; margin-top: 0.5rem;">Coca Cola</p>
+        <p style="color: #b45309;">₹80</p>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1613478225719-02e2f8dfd5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" style="width: 8rem; height: 8rem; object-fit: cover; border-radius: 9999px; margin: 0 auto; border: 4px solid #fde68a;" alt="Orange Juice">
+        <p style="font-weight: 600; margin-top: 0.5rem;">Orange Juice</p>
+        <p style="color: #b45309;">₹120</p>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1546173159-315724a31696?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" style="width: 8rem; height: 8rem; object-fit: cover; border-radius: 9999px; margin: 0 auto; border: 4px solid #fde68a;" alt="Mango Juice">
+        <p style="font-weight: 600; margin-top: 0.5rem;">Mango Juice</p>
+        <p style="color: #b45309;">₹130</p>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="beverages.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #92400e; color: white; padding: 0.75rem 2rem; border-radius: 9999px; text-decoration: none; font-weight: 600;">
+        <i class="fas fa-glass-cheers"></i> Explore Full Menu
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div>
+        <h5 style="color: white; font-weight: bold; font-size: 1.125rem;">Marina Bay Sands</h5>
+        <p style="margin-top: 0.5rem;">Luxury reimagined in the land of the Sun God.</p>
+        <div style="margin-top: 1rem;">
+          <p><i class="fas fa-phone"></i> <a href="tel:+916371337901" style="color: #fef3c7;">+91 6371337901</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:soumyaranjanparamanik8@gmail.com" style="color: #fef3c7;">soumyaranjanparamanik8@gmail.com</a></p>
+        </div>
+      </div>
+      
+      <div>
+        <h6 style="font-weight: 600;">Quick links</h6>
+        <ul class="footer-links">
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#food">Food & drinks</a></li>
+          <li><a href="beverages.html"><i class="fas fa-glass-cheers"></i> Drinks menu</a></li>
+          <li><a href="#billing">Billing</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h6 style="font-weight: 600;">Support</h6>
+        <ul class="footer-links">
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h6 style="font-weight: 600;">Newsletter</h6>
+        <div style="display: flex; margin-top: 0.5rem;">
+          <input type="email" placeholder="Your email" style="padding: 0.5rem; border-radius: 0.5rem 0 0 0.5rem; border: none; width: 100%;">
+          <button style="background: #92400e; padding: 0.5rem 1rem; border-radius: 0 0.5rem 0.5rem 0; border: none; color: white; cursor: pointer;">Go</button>
+        </div>
+        <p style="font-size: 0.75rem; margin-top: 0.75rem;">Or email us directly: <a href="mailto:soumyaranjanparamanik8@gmail.com" style="color: #fef3c7; text-decoration: underline;">soumyaranjanparamanik8@gmail.com</a></p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      © 2026 Marina Bay Sands – Konark. All rights reserved. Indian Rupees (INR). Contact: +91 6371337901
+    </div>
+  </div>
+</footer>
+
+<!-- Shopping Cart -->
+<div class="cart-sidebar">
+  <button class="cart-button" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount" class="cart-count">0</span>
+  </button>
+  
+  <div id="cartPanel" class="cart-panel">
+    <div class="cart-header">
+      <h3>Your Order</h3>
+      <button onclick="toggleCart()" style="background: none; border: none; color: white; cursor: pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cartItems" class="cart-items">
+      <p style="color: #9ca3af; text-align: center;">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-checkout">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<!-- Room Booking Modal -->
+<div id="roomModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h2>Book Your Stay</h2>
+    <div class="form-group">
+      <label>Check-in</label>
+      <input type="date" id="modalCheckIn" value="2025-05-01">
+    </div>
+    <div class="form-group">
+      <label>Check-out</label>
+      <input type="date" id="modalCheckOut" value="2025-05-05">
+    </div>
+    <div class="form-group">
+      <label>Room Type</label>
+      <select id="modalRoomType">
+        <option value="deluxe" data-price="8500">Sun Temple Deluxe - ₹8,500/night</option>
+        <option value="executive" data-price="14200">Konark Executive Suite - ₹14,200/night</option>
+        <option value="presidential" data-price="32000">Presidential Villa - ₹32,000/night</option>
+      </select>
+    </div>
+    <div class="total-price" id="modalTotalPrice">Total: ₹0</div>
+    <button id="modalAddBtn">Add to Bill</button>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  // Food cart array
+  let cart = [];
+  let discount = 0;
+  // Room bookings array: each { name, pricePerNight, nights, total }
+  let roomBookings = [];
+
+  // Helper: calculate nights between two dates
+  function calculateNights(checkIn, checkOut) {
+    const oneDay = 24 * 60 * 60 * 1000;
+    const start = new Date(checkIn);
+    const end = new Date(checkOut);
+    const diffDays = Math.round(Math.abs((end - start) / oneDay));
+    return diffDays > 0 ? diffDays : 1;
+  }
+
+  // Helper: calculate current total (food + rooms - discount)
+  function calculateCurrentTotal() {
+    const foodTotal = cart.reduce((sum, i) => sum + i.price, 0);
+    const roomTotal = roomBookings.reduce((sum, b) => sum + b.total, 0);
+    let total = foodTotal + roomTotal;
+    total = Math.max(total - discount, 0);
+    return total;
+  }
+
+  // Update the room UI in billing section
+  function updateRoomBillUI() {
+    const roomDiv = document.getElementById('room-items');
+    if (!roomDiv) return;
+    if (roomBookings.length === 0) {
+      roomDiv.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 0.5rem;">No room booked yet.</p>';
+    } else {
+      let html = '';
+      roomBookings.forEach((booking, idx) => {
+        html += `
+          <div class="room-booking-item">
+            <div>
+              <strong>${booking.name}</strong><br>
+              ${booking.nights} night(s) × ₹${booking.pricePerNight} = ₹${booking.total}
+            </div>
+            <button onclick="removeRoomBooking(${idx})"><i class="fas fa-trash"></i></button>
+          </div>
+        `;
+      });
+      roomDiv.innerHTML = html;
+    }
+    updateCombinedTotal();
+  }
+
+  // Remove a room booking
+  function removeRoomBooking(index) {
+    roomBookings.splice(index, 1);
+    updateRoomBillUI();
+  }
+
+  // Add a room booking from modal
+  function addRoomToBill() {
+    if (!window.tempBooking) return;
+    roomBookings.push({ ...window.tempBooking });
+    updateRoomBillUI();
+    closeModal();
+    alert('Room added to bill!');
+  }
+
+  // Update the combined total (food + room - discount) and display
+  function updateCombinedTotal() {
+    const foodTotal = cart.reduce((sum, i) => sum + i.price, 0);
+    const roomTotal = roomBookings.reduce((sum, b) => sum + b.total, 0);
+    let total = foodTotal + roomTotal;
+    total = Math.max(total - discount, 0);
+    const totalSpan = document.getElementById('totalAmount');
+    if (totalSpan) totalSpan.innerText = `₹${total}`;
+    // Also update cart sidebar total (food only) for consistency
+    const cartTotalSpan = document.getElementById('cartTotal');
+    if (cartTotalSpan) cartTotalSpan.innerText = `₹${foodTotal}`;
+  }
+
+  // Update food cart UI
+  function updateCartUI() {
+    const cartCountSpan = document.getElementById('cartCount');
+    const cartItemsDiv = document.getElementById('cartItems');
+    const cartTotalSpan = document.getElementById('cartTotal');
+    if (cartCountSpan) cartCountSpan.innerText = cart.length;
+    if (cart.length === 0) {
+      if (cartItemsDiv) cartItemsDiv.innerHTML = '<p style="color: #9ca3af; text-align: center;">Your cart is empty</p>';
+      if (cartTotalSpan) cartTotalSpan.innerText = '₹0';
+    } else {
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">
+            <div>
+              <p style="font-weight: 600; font-size: 0.875rem;">${item.name}</p>
+              <p style="color: #92400e; font-size: 0.75rem;">₹${item.price}</p>
+            </div>
+            <button onclick="removeFromCart(${index})" style="color: #ef4444; background: none; border: none; cursor: pointer;"><i class="fas fa-trash"></i></button>
+          </div>
+        `;
+      });
+      if (cartItemsDiv) cartItemsDiv.innerHTML = html;
+      if (cartTotalSpan) cartTotalSpan.innerText = `₹${total}`;
+    }
+
+    // Update the main billing food list
+    const foodBillDiv = document.getElementById('cart-items');
+    if (foodBillDiv) {
+      if (cart.length === 0) {
+        foodBillDiv.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 0.5rem;">No items yet. Add food or extras.</p>';
+      } else {
+        let html = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+          total += item.price;
+          html += `<div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #ccc;">
+            <span>${item.name}</span><span>₹${item.price}</span>
+            <button onclick="removeFromCart(${index})" style="color: #ef4444; background: none; border: none; cursor: pointer;"><i class="fas fa-trash"></i></button>
+          </div>`;
+        });
+        foodBillDiv.innerHTML = html;
+      }
+    }
+    updateCombinedTotal();
+  }
+
+  function addToCart(itemName, price) {
+    cart.push({ name: itemName, price: price });
+    updateCartUI();
+    alert(`${itemName} added to cart!`);
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function toggleCart() {
+    const panel = document.getElementById('cartPanel');
+    if (panel) panel.classList.toggle('show');
+  }
+
+  function applyPromo() {
+    const code = document.getElementById('promoCode')?.value.trim();
+    if (code === 'KONARK10') {
+      discount = 500;
+      alert('Promo applied: ₹500 off');
+      updateCombinedTotal();
+    } else {
+      alert('Invalid code');
+    }
+  }
+
+  // Place order function
+  function placeOrder() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+      alert('Please login first to place an order.');
+      openLoginModal();
+      return;
+    }
+    if (cart.length === 0 && roomBookings.length === 0) {
+      alert('No items in your cart or room bookings. Please add something before proceeding.');
+      return;
+    }
+    const total = calculateCurrentTotal();
+    const order = {
+      id: Date.now(),
+      user: loggedInUser,
+      date: new Date().toLocaleString(),
+      items: {
+        food: [...cart],
+        rooms: [...roomBookings]
+      },
+      total: total,
+      status: 'pending'
+    };
+    // Get existing orders from localStorage
+    let orders = JSON.parse(localStorage.getItem('hotelOrders')) || [];
+    orders.push(order);
+    localStorage.setItem('hotelOrders', JSON.stringify(orders));
+    // Clear cart and room bookings
+    cart = [];
+    roomBookings = [];
+    discount = 0;
+    updateCartUI(); // also updates room bill and total
+    alert(`Order placed successfully! Order ID: ${order.id}\nTotal: ₹${order.total}\nStatus: Pending. Admin will review.`);
+  }
+
+  // Room modal functions
+  function openModal(roomType = null, roomName = null, pricePerNight = null) {
+    const modal = document.getElementById('roomModal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    // Pre-fill from quick checker if available
+    const quickCheckIn = document.getElementById('quickCheckIn');
+    const quickCheckOut = document.getElementById('quickCheckOut');
+    if (quickCheckIn && quickCheckIn.value) {
+      document.getElementById('modalCheckIn').value = quickCheckIn.value;
+      document.getElementById('modalCheckOut').value = quickCheckOut.value;
+    }
+    if (roomType && pricePerNight) {
+      const select = document.getElementById('modalRoomType');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === roomType) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    updateModalTotal();
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('roomModal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function updateModalTotal() {
+    const checkIn = document.getElementById('modalCheckIn').value;
+    const checkOut = document.getElementById('modalCheckOut').value;
+    const nights = calculateNights(checkIn, checkOut);
+    const select = document.getElementById('modalRoomType');
+    const selectedOption = select.options[select.selectedIndex];
+    const price = parseInt(selectedOption.getAttribute('data-price'));
+    const total = nights * price;
+    document.getElementById('modalTotalPrice').innerText = `Total: ₹${total}`;
+    window.tempBooking = {
+      name: selectedOption.textContent.split(' - ')[0],
+      pricePerNight: price,
+      nights: nights,
+      total: total
+    };
+  }
+
+  // Filter function for food categories
+  function filterHomeCategory(category) {
+    const foodCards = document.querySelectorAll('.food-card');
+    const tabs = ['all', 'main-course', 'cold-drinks', 'snacks', 'desserts'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`home-tab-${t === 'all' ? 'all' : t}`);
+      if (btn) {
+        btn.style.background = '#e5e7eb';
+        btn.style.color = '#1f2937';
+      }
+    });
+    const activeBtn = document.getElementById(`home-tab-${category === 'all' ? 'all' : category}`);
+    if (activeBtn) {
+      activeBtn.style.background = '#92400e';
+      activeBtn.style.color = 'white';
+    }
+    foodCards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      if (category === 'all') card.style.display = 'block';
+      else card.style.display = cardCategory === category ? 'block' : 'none';
+    });
+  }
+
+  // Login modal functions
+  function openLoginModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+  }
+  function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+  }
+  function redirectToUserLogin() {
+    window.location.href = 'login.html';
+  }
+  function redirectToAdminLogin() {
+    window.location.href = 'admin.html';
+  }
+
+  // Initialize event listeners and UI
+  document.addEventListener('DOMContentLoaded', function() {
+    // Login button
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', openLoginModal);
+    }
+    // Reserve a room button
+    const reserveBtn = document.getElementById('reserveRoomBtn');
+    if (reserveBtn) {
+      reserveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    }
+    // All "Book this room" buttons
+    const bookBtns = document.querySelectorAll('.btn-book-room');
+    bookBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const roomType = btn.getAttribute('data-room');
+        const roomName = btn.getAttribute('data-name');
+        const price = parseInt(btn.getAttribute('data-price'));
+        openModal(roomType, roomName, price);
+      });
+    });
+    // Quick check button
+    const quickCheck = document.getElementById('quickCheckBtn');
+    if (quickCheck) {
+      quickCheck.addEventListener('click', () => {
+        const roomSelect = document.getElementById('quickRoomType');
+        const selectedValue = roomSelect.value;
+        let roomType = '';
+        if (selectedValue.includes('deluxe')) roomType = 'deluxe';
+        else if (selectedValue.includes('executive')) roomType = 'executive';
+        else if (selectedValue.includes('presidential')) roomType = 'presidential';
+        openModal(roomType);
+      });
+    }
+    // Modal event listeners
+    const modalCheckIn = document.getElementById('modalCheckIn');
+    const modalCheckOut = document.getElementById('modalCheckOut');
+    const modalRoomType = document.getElementById('modalRoomType');
+    if (modalCheckIn) modalCheckIn.addEventListener('change', updateModalTotal);
+    if (modalCheckOut) modalCheckOut.addEventListener('change', updateModalTotal);
+    if (modalRoomType) modalRoomType.addEventListener('change', updateModalTotal);
+    const modalAddBtn = document.getElementById('modalAddBtn');
+    if (modalAddBtn) modalAddBtn.addEventListener('click', addRoomToBill);
+    // Proceed to payment button
+    const proceedBtn = document.getElementById('proceedPaymentBtn');
+    if (proceedBtn) {
+      proceedBtn.addEventListener('click', placeOrder);
+    }
+    updateCartUI();
+    filterHomeCategory('all');
+  });
+
+  // Login/Logout functions
+  function updateWelcomeBanner() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const welcomeBanner = document.getElementById('welcomeBanner');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    if (loggedInUser) {
+      welcomeMessage.innerHTML = `<i class="fas fa-check-circle"></i> Welcome, ${loggedInUser}!`;
+      welcomeBanner.style.display = 'block';
+    } else {
+      welcomeBanner.style.display = 'none';
+    }
+  }
+  function logout() {
+    localStorage.removeItem('loggedInUser');
+    updateWelcomeBanner();
+    alert('You have been logged out.');
+    window.location.reload();
+  }
+  updateWelcomeBanner();
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) logoutBtn.addEventListener('click', logout);
+</script>
+
+</body>
+</html>
