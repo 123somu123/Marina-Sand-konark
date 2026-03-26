@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Marina Bay Sands</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f4f6;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: #1f2937;
+      color: white;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header h1 {
+      font-size: 1.5rem;
+    }
+    .header a {
+      color: white;
+      text-decoration: none;
+      background: #dc2626;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background 0.3s;
+    }
+    .header a:hover {
+      background: #b91c1c;
+    }
+    .login-form {
+      padding: 2rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #1f2937;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+    }
+    button {
+      width: 100%;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .error {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .dashboard {
+      padding: 1.5rem;
+    }
+    .dashboard h2 {
+      margin-bottom: 1rem;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .order-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .order-id {
+      font-weight: bold;
+      color: #2563eb;
+    }
+    .order-status {
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .status-pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .status-approved {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .status-denied {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .order-details {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #4b5563;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .order-details > div {
+      flex: 1;
+    }
+    .order-items {
+      margin: 0.75rem 0;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 0.5rem;
+    }
+    .order-items ul {
+      list-style: none;
+      margin-left: 1rem;
+    }
+    .order-items li {
+      padding: 0.25rem 0;
+    }
+    .order-actions {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-accept, .btn-deny {
+      padding: 0.25rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-accept {
+      background: #16a34a;
+      color: white;
+    }
+    .btn-accept:hover {
+      background: #15803d;
+    }
+    .btn-deny {
+      background: #dc2626;
+      color: white;
+    }
+    .btn-deny:hover {
+      background: #b91c1c;
+    }
+    .no-orders {
+      text-align: center;
+      color: #6b7280;
+      padding: 2rem;
+    }
+    .logout-btn {
+      background: #374151;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+      width: auto;
+    }
+    .logout-btn:hover {
+      background: #4b5563;
+    }
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="app">
+  <!-- Header (visible always) -->
+  <div class="header">
+    <h1><i class="fas fa-user-shield"></i> Admin Panel</h1>
+    <div>
+      <a href="index.html" class="home-link"><i class="fas fa-home"></i> Back to Site</a>
+    </div>
+  </div>
+
+  <!-- Login Section -->
+  <div id="loginSection" class="login-form">
+    <h2>Admin Login</h2>
+    <form id="adminLoginForm">
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="adminUsername" required>
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="adminPassword" required>
+      </div>
+      <button type="submit">Login</button>
+      <div id="loginError" class="error" style="display: none;"></div>
+    </form>
+  </div>
+
+  <!-- Dashboard Section (hidden initially) -->
+  <div id="dashboardSection" style="display: none;">
+    <div class="dashboard">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+        <h2><i class="fas fa-clipboard-list"></i> All Orders</h2>
+        <button id="adminLogoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+      <div id="ordersList"></div>
+    </div>
+    <div class="footer">
+      <p>Orders are stored locally. Accept or deny orders to update their status.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Admin credentials
+  const ADMIN_USERNAME = 'admin';
+  const ADMIN_PASSWORD = 'admin123';
+
+  // Flag to track login state in memory (not persisted)
+  let isLoggedIn = false;
+
+  // Helper to show error message
+  function showLoginError(message) {
+    const errorDiv = document.getElementById('loginError');
+    errorDiv.style.display = 'block';
+    errorDiv.innerText = message;
+    setTimeout(() => {
+      errorDiv.style.display = 'none';
+    }, 3000);
+  }
+
+  // Login form submission
+  document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('adminUsername').value;
+    const password = document.getElementById('adminPassword').value;
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      // Login successful
+      isLoggedIn = true;
+      showDashboard();
+    } else {
+      showLoginError('Invalid username or password.');
+    }
+  });
+
+  function showDashboard() {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('dashboardSection').style.display = 'block';
+    loadOrders();
+  }
+
+  function loadOrders() {
+    const orders = JSON.parse(localStorage.getItem('hotelOrders')) || [];
+    const ordersListDiv = document.getElementById('ordersList');
+    if (orders.length === 0) {
+      ordersListDiv.innerHTML = '<div class="no-orders">No orders placed yet.</div>';
+      return;
+    }
+    // Sort orders by date descending (newest first)
+    orders.sort((a, b) => b.id - a.id);
+    let html = '';
+    orders.forEach((order, idx) => {
+      const statusClass = order.status === 'pending' ? 'status-pending' : (order.status === 'approved' ? 'status-approved' : 'status-denied');
+      const statusText = order.status.toUpperCase();
+      // Build items list
+      let itemsHtml = '';
+      if (order.items.food && order.items.food.length > 0) {
+        itemsHtml += `<strong>🍽️ Food Items:</strong><ul>`;
+        order.items.food.forEach(item => {
+          itemsHtml += `<li>${item.name} - ₹${item.price}</li>`;
+        });
+        itemsHtml += `</ul>`;
+      }
+      if (order.items.rooms && order.items.rooms.length > 0) {
+        itemsHtml += `<strong>🛏️ Room Bookings:</strong><ul>`;
+        order.items.rooms.forEach(room => {
+          itemsHtml += `<li>${room.name} (${room.nights} nights) - ₹${room.total}</li>`;
+        });
+        itemsHtml += `</ul>`;
+      }
+      html += `
+        <div class="order-card" data-id="${order.id}">
+          <div class="order-header">
+            <span class="order-id">Order #${order.id}</span>
+            <span class="order-status ${statusClass}">${statusText}</span>
+          </div>
+          <div class="order-details">
+            <div><strong>User:</strong> ${order.user}</div>
+            <div><strong>Date:</strong> ${order.date}</div>
+            <div><strong>Total:</strong> ₹${order.total}</div>
+          </div>
+          <div class="order-items">
+            ${itemsHtml}
+          </div>
+          <div class="order-actions">
+            <button class="btn-accept" onclick="updateOrderStatus(${order.id}, 'approved')">Accept</button>
+            <button class="btn-deny" onclick="updateOrderStatus(${order.id}, 'denied')">Deny</button>
+          </div>
+        </div>
+      `;
+    });
+    ordersListDiv.innerHTML = html;
+  }
+
+  function updateOrderStatus(orderId, newStatus) {
+    let orders = JSON.parse(localStorage.getItem('hotelOrders')) || [];
+    const orderIndex = orders.findIndex(o => o.id === orderId);
+    if (orderIndex !== -1) {
+      orders[orderIndex].status = newStatus;
+      localStorage.setItem('hotelOrders', JSON.stringify(orders));
+      loadOrders(); // refresh the list
+      alert(`Order #${orderId} has been ${newStatus}.`);
+    }
+  }
+
+  // Admin logout
+  function adminLogout() {
+    isLoggedIn = false;
+    // Reset UI: show login section, hide dashboard
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('dashboardSection').style.display = 'none';
+    // Clear any error messages
+    document.getElementById('loginError').style.display = 'none';
+    // Clear input fields
+    document.getElementById('adminUsername').value = '';
+    document.getElementById('adminPassword').value = '';
+    alert('Admin logged out.');
+  }
+
+  // Attach logout event listener
+  const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+  if (adminLogoutBtn) {
+    adminLogoutBtn.addEventListener('click', adminLogout);
+  }
+
+  // Expose updateOrderStatus globally for inline onclick
+  window.updateOrderStatus = updateOrderStatus;
+</script>
+</body>
+</html>
