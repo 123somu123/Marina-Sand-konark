@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marina Bay Sands – Konark | Beverages & Snacks Menu</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation Bar (with link back to main site) -->
+<header class="sticky-header">
+  <div class="container header-container">
+    <div class="logo">
+      <i class="fas fa-umbrella-beach"></i>
+      <span>Marina Bay Sands <span>– Konark</span></span>
+    </div>
+    
+    <div class="header-actions">
+      <!-- BACK TO HOME BUTTON -->
+      <a href="index.html" class="btn-back-home"><i class="fas fa-home"></i> Back to Main Site</a>
+      <a href="tel:+916371337901" class="phone-link"><i class="fas fa-phone-alt"></i> +91 6371337901</a>
+    </div>
+  </div>
+  
+  <!-- Mobile Back Button (visible on small screens) -->
+  <div style="display: none; background: white; padding: 0.5rem; border-top: 1px solid #e5e7eb; text-align: center;">
+    <a href="index.html" style="color: #92400e; font-weight: 600;"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-pattern" style="padding: 4rem 0;">
+  <div class="container" style="text-align: center;">
+    <h1 style="font-size: 3rem; font-family: 'Playfair Display', serif; font-weight: bold; margin-bottom: 1rem;">Chilled & Delightful</h1>
+    <p style="font-size: 1.25rem; max-width: 48rem; margin: 0 auto;">Refreshing cold drinks · Crispy snacks · Irresistible desserts</p>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem;">
+      <a href="#cold-drinks" style="background: rgba(255,255,255,0.2); border: 2px solid white; padding: 0.75rem 1.5rem; border-radius: 9999px; color: white; text-decoration: none;"><i class="fas fa-glass-cheers"></i> Cold Drinks</a>
+      <a href="#snacks" style="background: rgba(255,255,255,0.2); border: 2px solid white; padding: 0.75rem 1.5rem; border-radius: 9999px; color: white; text-decoration: none;"><i class="fas fa-utensils"></i> Snacks</a>
+      <a href="#desserts" style="background: rgba(255,255,255,0.2); border: 2px solid white; padding: 0.75rem 1.5rem; border-radius: 9999px; color: white; text-decoration: none;"><i class="fas fa-cake"></i> Desserts</a>
+    </div>
+  </div>
+</section>
+
+<!-- Category Filter Tabs -->
+<div class="category-tabs">
+  <div class="container tab-container">
+    <button onclick="filterCategory('all')" class="tab-button active" id="tab-all">All Items</button>
+    <button onclick="filterCategory('cold-drinks')" class="tab-button" id="tab-cold"><i class="fas fa-glass-whiskey"></i> Cold Drinks</button>
+    <button onclick="filterCategory('snacks')" class="tab-button" id="tab-snacks"><i class="fas fa-french-fries"></i> Snacks</button>
+    <button onclick="filterCategory('desserts')" class="tab-button" id="tab-desserts"><i class="fas fa-ice-cream"></i> Desserts</button>
+  </div>
+</div>
+
+<!-- MAIN MENU -->
+<div class="container" style="padding: 3rem 1rem;">
+  
+  <!-- Cold Drinks Section (unchanged) -->
+  <section id="cold-drinks" class="category-section" data-category="cold-drinks">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <div style="background: #fde68a; width: 3rem; height: 3rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center;">
+        <i class="fas fa-glass-cheers" style="color: #92400e;"></i>
+      </div>
+      <h2 style="font-size: 2rem; font-family: 'Playfair Display', serif; color: #78350f;">Cold Beverages</h2>
+      <span style="background: #fef3c7; color: #92400e; padding: 0.25rem 0.75rem; border-radius: 9999px;">6 items</span>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+      
+      <!-- Pepsi -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="position: relative; height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Pepsi">
+          <span class="bestseller-badge">Bestseller</span>
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Pepsi</h3>
+            <span style="color: #92400e; font-weight: bold;">₹85</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem; margin-top: 0.25rem;">Refreshing cola (500ml)</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(124)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Pepsi', 85)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Pepsi', '₹85', 'Chilled Pepsi cola, served in a bottle with ice.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Coca Cola -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Coca Cola">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Coca Cola</h3>
+            <span style="color: #92400e; font-weight: bold;">₹80</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Classic chilled cola (330ml)</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(256)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Coca Cola', 80)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Coca Cola', '₹80', 'Original Coca Cola served chilled with ice and lemon.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mango Juice -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1546173159-315724a31696?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Mango Juice">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Mango Juice</h3>
+            <span style="color: #92400e; font-weight: bold;">₹130</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Sweet mango pulp juice</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(89)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Mango Juice', 130)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Mango Juice', '₹130', 'Freshly extracted mango juice, thick and pulpy.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Orange Juice -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1613478225719-02e2f8dfd5a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Orange Juice">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Orange Juice</h3>
+            <span style="color: #92400e; font-weight: bold;">₹120</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Fresh squeezed orange juice</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(76)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Orange Juice', 120)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Orange Juice', '₹120', 'Pure orange juice, no added sugar, served chilled.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Strawberry Shake -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Strawberry Shake">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Strawberry Shake</h3>
+            <span style="color: #92400e; font-weight: bold;">₹220</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Creamy strawberry milkshake</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(167)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Strawberry Shake', 220)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Strawberry Shake', '₹220', 'Rich and creamy strawberry shake topped with whipped cream.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chocolate Shake -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1572490331371-32e48f8f7a6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Chocolate Shake">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Chocolate Shake</h3>
+            <span style="color: #92400e; font-weight: bold;">₹240</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Thick chocolate milkshake</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(203)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Chocolate Shake', 240)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Chocolate Shake', '₹240', 'Decadent chocolate shake made with real chocolate and milk.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  <!-- Snacks Section (unchanged) -->
+  <section id="snacks" class="category-section" data-category="snacks" style="margin-top: 4rem;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <div style="background: #fde68a; width: 3rem; height: 3rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center;">
+        <i class="fas fa-french-fries" style="color: #92400e;"></i>
+      </div>
+      <h2 style="font-size: 2rem; font-family: 'Playfair Display', serif; color: #78350f;">Savory Snacks</h2>
+      <span style="background: #fef3c7; color: #92400e; padding: 0.25rem 0.75rem; border-radius: 9999px;">6 items</span>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+      <!-- Snack 1: Chicken Stick -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Chicken Stick">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Chicken Stick (2 pcs)</h3>
+            <span style="color: #92400e; font-weight: bold;">₹180</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Crispy chicken strips with dip</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(312)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Chicken Stick', 180)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Chicken Stick', '₹180', 'Juicy chicken strips, breaded and fried until golden. Served with tangy dip.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Snack 2: Samosa -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Samosa">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Samosa (2 pcs)</h3>
+            <span style="color: #92400e; font-weight: bold;">₹220</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Stuffed with spiced potatoes & peas</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(187)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Samosa', 220)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Samosa', '₹220', 'Golden fried samosas stuffed with spiced potatoes and peas. Served with mint chutney.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Snack 3: Onion Rings -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1639024471283-03518883512d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Onion Rings">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Onion Rings</h3>
+            <span style="color: #92400e; font-weight: bold;">₹190</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Beer-battered & crispy</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="far fa-star star empty"></i>
+            <span class="rating-count">(92)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Onion Rings', 190)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Onion Rings', '₹190', 'Thick-cut onion rings in a light beer batter, fried until golden. Served with ranch dip.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Snack 4: Chicken Wings -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1608039829572-78524f79c4c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Chicken Wings">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Chicken Wings (6 pcs)</h3>
+            <span style="color: #92400e; font-weight: bold;">₹350</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Spicy tangy sauce</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(145)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Chicken Wings', 350)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Chicken Wings', '₹350', 'Juicy chicken wings tossed in our signature spicy sauce. Served with celery and ranch.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Snack 5: Pizza -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Pizza">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Margherita Pizza</h3>
+            <span style="color: #92400e; font-weight: bold;">₹320</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Classic cheese pizza with tomato sauce</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(78)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Margherita Pizza', 320)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Margherita Pizza', '₹320', 'Wood-fired pizza topped with mozzarella, tomato sauce, and fresh basil.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Snack 6: Classic Burger -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Burger">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Classic Burger</h3>
+            <span style="color: #92400e; font-weight: bold;">₹320</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Grilled chicken patty with lettuce & cheese</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(156)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Classic Burger', 320)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Classic Burger', '₹320', 'Juicy grilled chicken burger with fresh lettuce, cheese, and our special sauce. Served with fries.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Desserts Section - UPDATED: Vanilla → Butter Scotch -->
+  <section id="desserts" class="category-section" data-category="desserts" style="margin-top: 4rem;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+      <div style="background: #fde68a; width: 3rem; height: 3rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center;">
+        <i class="fas fa-cake" style="color: #92400e;"></i>
+      </div>
+      <h2 style="font-size: 2rem; font-family: 'Playfair Display', serif; color: #78350f;">Decadent Desserts</h2>
+      <span style="background: #fef3c7; color: #92400e; padding: 0.25rem 0.75rem; border-radius: 9999px;">5 items</span>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+      
+      <!-- Butter Scotch Ice Cream (formerly Vanilla) -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1505394033641-0c1b3d5d0f0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Butter Scotch Ice Cream">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Butter Scotch Ice Cream</h3>
+            <span style="color: #92400e; font-weight: bold;">₹150</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Creamy butterscotch with crunchy nuts, single scoop</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(312)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Butter Scotch Ice Cream', 150)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Butter Scotch Ice Cream', '₹150', 'Rich butterscotch ice cream with caramel swirls and roasted nuts.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chocolate Ice Cream (unchanged) -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Chocolate Ice Cream">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Chocolate Ice Cream</h3>
+            <span style="color: #92400e; font-weight: bold;">₹170</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">Rich Belgian chocolate, single scoop</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(198)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Chocolate Ice Cream', 170)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Chocolate Ice Cream', '₹170', 'Decadent chocolate ice cream made with premium Belgian cocoa.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Molten Lava Cake -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Molten Lava Cake">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Molten Lava Cake</h3>
+            <span style="color: #92400e; font-weight: bold;">₹320</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">With chocolate center</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(167)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Molten Lava Cake', 320)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Molten Lava Cake', '₹320', 'Warm chocolate cake with a gooey molten center. Served with vanilla ice cream.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ice Cream Sundae -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Ice Cream">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">Ice Cream Sundae</h3>
+            <span style="color: #92400e; font-weight: bold;">₹240</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">3 scoops with toppings</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star-half-alt star"></i>
+            <span class="rating-count">(145)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('Ice Cream Sundae', 240)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('Ice Cream Sundae', '₹240', 'Three scoops of your choice with chocolate syrup, nuts, and a cherry on top.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- New York Cheesecake -->
+      <div class="menu-card" style="background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        <div style="height: 12rem; overflow: hidden;">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" style="width: 100%; height: 100%; object-fit: cover;" alt="Cheesecake">
+        </div>
+        <div style="padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between;">
+            <h3 style="font-weight: bold; font-size: 1.25rem;">New York Cheesecake</h3>
+            <span style="color: #92400e; font-weight: bold;">₹290</span>
+          </div>
+          <p style="color: #6b7280; font-size: 0.875rem;">With berry compote</p>
+          <div class="rating-stars">
+            <i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+            <span class="rating-count">(112)</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button onclick="addToCart('New York Cheesecake', 290)" style="flex: 1; background: #92400e; color: white; border: none; padding: 0.5rem; border-radius: 0.5rem;"><i class="fas fa-shopping-cart"></i> Add</button>
+            <button onclick="showDetails('New York Cheesecake', '₹290', 'Creamy New York style cheesecake on a graham cracker crust. Topped with berry compote.')" class="btn-icon"><i class="fas fa-info-circle"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- BACK TO HOME BUTTON -->
+  <div style="text-align: center; margin: 3rem 0 2rem;">
+    <a href="index.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #92400e; color: white; padding: 1rem 2.5rem; border-radius: 9999px; text-decoration: none; font-weight: 600; font-size: 1.125rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+      <i class="fas fa-home"></i> Back to Homepage
+    </a>
+  </div>
+  
+  <!-- Combo Offers Section (Sweet Escape updated) -->
+  <section class="combo-section">
+    <div style="text-align: center;">
+      <h2 style="font-size: 2rem; font-family: 'Playfair Display', serif; color: #78350f;">🍱 Special Combos</h2>
+      <p style="color: #4b5563;">Save big with our refreshing combos</p>
+    </div>
+    
+    <div class="combo-grid">
+      <div class="combo-card">
+        <div class="combo-icon"><i class="fas fa-glass-cheers"></i></div>
+        <h3 style="font-weight: bold;">Thirst Quencher</h3>
+        <p style="font-size: 0.875rem; color: #6b7280;">Pepsi + Samosa</p>
+        <p class="combo-price">₹280 <span class="combo-old-price">₹305</span></p>
+        <button onclick="addToCart('Thirst Quencher Combo', 280)" class="btn-combo">Add Combo</button>
+      </div>
+      
+      <div class="combo-card">
+        <div class="combo-icon"><i class="fas fa-utensils"></i></div>
+        <h3 style="font-weight: bold;">Snack Attack</h3>
+        <p style="font-size: 0.875rem; color: #6b7280;">Chicken Wings + Cold Coffee</p>
+        <p class="combo-price">₹550 <span class="combo-old-price">₹600</span></p>
+        <button onclick="addToCart('Snack Attack Combo', 550)" class="btn-combo">Add Combo</button>
+      </div>
+      
+      <div class="combo-card">
+        <div class="combo-icon"><i class="fas fa-cake"></i></div>
+        <h3 style="font-weight: bold;">Sweet Escape</h3>
+        <p style="font-size: 0.875rem; color: #6b7280;">Chocolate Ice Cream + Ice Cream Sundae</p>
+        <p class="combo-price">₹360 <span class="combo-old-price">₹410</span></p>
+        <button onclick="addToCart('Sweet Escape Combo', 360)" class="btn-combo">Add Combo</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Shopping Cart -->
+<div class="cart-sidebar">
+  <button class="cart-button" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount" class="cart-count">0</span>
+  </button>
+  
+  <div id="cartPanel" class="cart-panel">
+    <div class="cart-header">
+      <h3>Your Order</h3>
+      <button onclick="toggleCart()" style="background: none; border: none; color: white;"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cartItems" class="cart-items">
+      <p style="color: #9ca3af; text-align: center;">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-checkout">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<!-- Item Details Modal -->
+<div id="itemModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div class="modal-body">
+      <img id="modalImage" src="" alt="" class="modal-image">
+      <h3 id="modalTitle" class="modal-title"></h3>
+      <p id="modalPrice" class="modal-price"></p>
+      <p id="modalDesc" class="modal-desc"></p>
+      <button class="btn-modal-add" onclick="addFromModal()">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center;">
+      <h5 style="color: white; font-weight: bold; font-size: 1.125rem;">Marina Bay Sands – Konark</h5>
+      <p>Beverages & Snacks Menu</p>
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+        <a href="index.html" style="color: #fef3c7;"><i class="fas fa-home"></i> Back to Home</a>
+        <a href="tel:+916371337901" style="color: #fef3c7;"><i class="fas fa-phone"></i> +91 6371337901</a>
+        <a href="mailto:soumyaranjanparamanik8@gmail.com" style="color: #fef3c7;"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Marina Bay Sands – Konark. All rights reserved. Indian Rupees (INR).
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  let cart = [];
+  let currentModalItem = { name: '', price: 0 };
+
+  function addToCart(itemName, price) {
+    cart.push({ name: itemName, price: price });
+    updateCartUI();
+    alert(`${itemName} added to cart!`);
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    document.getElementById('cartCount').innerText = cart.length;
+    
+    const cartItemsDiv = document.getElementById('cartItems');
+    const cartTotalSpan = document.getElementById('cartTotal');
+    
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = '<p style="color: #9ca3af; text-align: center;">Your cart is empty</p>';
+      cartTotalSpan.innerText = '₹0';
+    } else {
+      let html = '';
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">
+            <div>
+              <p style="font-weight: 600; font-size: 0.875rem;">${item.name}</p>
+              <p style="color: #92400e; font-size: 0.75rem;">₹${item.price}</p>
+            </div>
+            <button onclick="removeFromCart(${index})" style="color: #ef4444; background: none; border: none;"><i class="fas fa-trash"></i></button>
+          </div>
+        `;
+      });
+      
+      cartItemsDiv.innerHTML = html;
+      cartTotalSpan.innerText = `₹${total}`;
+    }
+  }
+
+  function toggleCart() {
+    document.getElementById('cartPanel').classList.toggle('show');
+  }
+
+  function filterCategory(category) {
+    document.querySelectorAll('.tab-button').forEach(btn => {
+      btn.classList.remove('active');
+      btn.style.backgroundColor = '#e5e7eb';
+      btn.style.color = '#1f2937';
+    });
+    
+    if (category === 'all') {
+      document.getElementById('tab-all').classList.add('active');
+      document.getElementById('tab-all').style.backgroundColor = '#92400e';
+      document.getElementById('tab-all').style.color = 'white';
+    } else if (category === 'cold-drinks') {
+      document.getElementById('tab-cold').classList.add('active');
+      document.getElementById('tab-cold').style.backgroundColor = '#92400e';
+      document.getElementById('tab-cold').style.color = 'white';
+    } else if (category === 'snacks') {
+      document.getElementById('tab-snacks').classList.add('active');
+      document.getElementById('tab-snacks').style.backgroundColor = '#92400e';
+      document.getElementById('tab-snacks').style.color = 'white';
+    } else if (category === 'desserts') {
+      document.getElementById('tab-desserts').classList.add('active');
+      document.getElementById('tab-desserts').style.backgroundColor = '#92400e';
+      document.getElementById('tab-desserts').style.color = 'white';
+    }
+    
+    document.querySelectorAll('.category-section').forEach(section => {
+      if (category === 'all') {
+        section.style.display = 'block';
+      } else {
+        if (section.id === category) {
+          section.style.display = 'block';
+        } else {
+          section.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  function showDetails(name, price, desc) {
+    currentModalItem = { name, price: parseInt(price.replace('₹', '')), desc };
+    
+    document.getElementById('modalTitle').innerText = name;
+    document.getElementById('modalPrice').innerText = price;
+    document.getElementById('modalDesc').innerText = desc;
+    
+    const imgs = document.querySelectorAll('img');
+    for (let img of imgs) {
+      if (img.alt && img.alt.includes(name.split(' ')[0])) {
+        document.getElementById('modalImage').src = img.src;
+        break;
+      }
+    }
+    
+    document.getElementById('itemModal').classList.add('show');
+  }
+
+  function addFromModal() {
+    addToCart(currentModalItem.name, currentModalItem.price);
+    closeModal();
+  }
+
+  function closeModal() {
+    document.getElementById('itemModal').classList.remove('show');
+  }
+
+  window.onload = function() {
+    updateCartUI();
+    filterCategory('all');
+  };
+</script>
+</body>
+</html>
